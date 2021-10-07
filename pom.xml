@@ -1,0 +1,43 @@
+	<profiles>
+		<profile>
+		    <id>generate-doc</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sahli.asciidoc.confluence.publisher</groupId>
+						<artifactId>asciidoc-confluence-publisher-maven-plugin</artifactId>
+						<version>0.12.0</version>
+						<executions>
+							<execution>
+								<id>export-confluence</id>
+								<phase>install</phase>
+								<goals>
+									<goal>publish</goal>
+								</goals>
+								<configuration>
+									<asciidocRootFolder>src/main/doc</asciidocRootFolder>
+									<sourceEncoding>UTF-8</sourceEncoding> <!-- default -->
+									<rootConfluenceUrl>https://confluence.apps.verisure.com/</rootConfluenceUrl>
+									<skipSslVerification>false</skipSslVerification>
+									<maxRequestsPerSecond>10</maxRequestsPerSecond>
+									<spaceKey>EXAMPLE</spaceKey>
+									<ancestorId>id page</ancestorId>
+									<serverId>confluence</serverId><!-- requires server definition in 
+										settings.xml -->
+									<!-- <pageTitlePrefix xml:space="preserve">Doc :: </pageTitlePrefix> -->
+									<!-- <pageTitleSuffix xml:space="preserve"> [${project.version}]</pageTitleSuffix> -->
+									<versionMessage>Version ${project.version}</versionMessage>
+									<orphanRemovalStrategy>KEEP_ORPHANS</orphanRemovalStrategy>
+									<convertOnly>false</convertOnly>
+									<attributes>
+										<project.name>Workflow Panel</project.name>
+										<project.version>${project.version}</project.version>
+									</attributes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
